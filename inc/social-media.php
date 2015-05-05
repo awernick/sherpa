@@ -1,6 +1,6 @@
 <?php
-	
-	function social_media_links($networks = array('facebook' => FALSE, 'twitter' => FALSE, 'google_plus' => FALSE, 'pinterest' => FALSE, 'linked_in' => FALSE, 'telephone' => FALSE), $size = 'lg', $style = 'square', $echo = TRUE) {
+
+	function social_media_links($networks = array('facebook' => FALSE, 'twitter' => FALSE, 'google_plus' => FALSE, 'pinterest' => FALSE, 'linked_in' => FALSE, 'telephone' => FALSE), $size = 'lg', $style = 'circle', $echo = TRUE) {
 
 		if($size == 'sm') {
 			$size_class = '';
@@ -9,20 +9,20 @@
 		} else {
 			return FALSE;
 		}
-		
+
 		if($style == 'rounded') {
 			$button_style = "rounded";
-		} elseif($style == 'circle') {
-			$button_style = "circle";
-		} else {
+		} elseif($style == 'square') {
 			$button_style = "square";
+		} else {
+			$button_style = "circle";
 		}
-		
+
 		extract($networks, EXTR_OVERWRITE);
-		
+
 		$to_return .= "<ul class=\"list-inline social-media\">\n";
-		
-		
+
+
 		if($facebook === TRUE) {
 			$facebook_url = FACEBOOK;
 			$to_return .= "<li><a href=\"$facebook_url\" class=\"facebook-button social-media-button $size $button_style \"><i class=\"fa fa-facebook $size_class\"><span>Facebook</span></i></a></li>\n";
@@ -47,9 +47,9 @@
 			$telephone_number = TELEPHONE;
 			$to_return .= "<li><a href=\"tel:$telephone_number\" class=\"phone-button social-media-button $size $button_style visible-xs\"><i class=\"fa fa-phone $size_class\"><span>Call Us</span></i></a></li>\n";
 		}
-			
+
 		$to_return .= "</ul>\n";
-		
+
 		if($echo) {
 			echo $to_return;
 		} else {
